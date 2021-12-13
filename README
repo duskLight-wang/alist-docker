@@ -1,1 +1,2 @@
 + 本项目基于https://github.com/Xhofe/alist 的最新版本2.0.1构建而成
++ 本项目编译后的镜像位于 https://hub.docker.com/repository/docker/light222/alist ，需要的可以前往拉取
