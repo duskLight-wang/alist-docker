@@ -3,7 +3,9 @@ FROM golang:1.17.1-alpine as builder
 WORKDIR /ProjectAlias
 
 
-RUN apk update \
+RUN set -eux \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositoriesapk update \
+    && apk update \
     && apk add git yarn build-base gcc abuild binutils binutils-doc gcc-doc \
     && git clone --recurse-submodules https://github.com/Xhofe/alist-web.git \
     && git clone --recurse-submodules https://github.com/Xhofe/alist.git \
@@ -44,6 +46,7 @@ COPY --from=builder /ProjectAlias/alist/alist-main /alist/
 VOLUME ["/alist/data"]
 
 RUN echo ">>>>>> update dependencies" \
+    && set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && apk update \
     && apk add tzdata \
     && echo ">>>>>> set up timezone" \
