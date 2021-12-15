@@ -8,6 +8,7 @@ RUN apk update \
     && git clone --recurse-submodules https://github.com/Xhofe/alist-web.git \
     && git clone --recurse-submodules https://github.com/Xhofe/alist.git \
     && cd /ProjectAlias/alist-web \
+    && yarn config set registry http://registry.npm.taobao.org/ \
     && yarn install --network-timeout 1000000 \
     && yarn run build \
     && mv /ProjectAlias/alist-web/dist/* /ProjectAlias/alist/public \
