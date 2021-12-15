@@ -12,6 +12,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && yarn install --network-timeout 1000000 \
     && yarn run build \
     && mv /ProjectAlias/alist-web/dist/* /ProjectAlias/alist/public \
+    && go env -w GOPROXY=https://goproxy.cn,direct \
+    && go env -w GO111MODULE=on \
     && cd /ProjectAlias/alist \
     && appName="alist" \
     && builtAt="$(date +'%F %T %z')" \
